@@ -10,6 +10,7 @@ public class Page {
     private String url;
     private Integer statusCode;
     private String content;
+    private ResultItems resultItems=new ResultItems();
 
     //该页中还需要爬取的页面
     private List<Request> targetRequests = new ArrayList<Request>();
@@ -44,5 +45,17 @@ public class Page {
 
     public void setTargetRequests(List<Request> targetRequests) {
         this.targetRequests = targetRequests;
+    }
+
+    public void putField(String key,Object field){
+        resultItems.put(key,field);
+    }
+
+    public ResultItems getResultItems() {
+        return resultItems;
+    }
+
+    public void setResultItems(ResultItems resultItems) {
+        this.resultItems = resultItems;
     }
 }

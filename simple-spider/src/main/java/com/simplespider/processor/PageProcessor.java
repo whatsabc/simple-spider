@@ -8,9 +8,6 @@ import com.simplespider.model.Site;
  * @time 20201101
  */
 public interface PageProcessor {
-
     public void process(Page page);
-
     public Site getSite();
-
 }

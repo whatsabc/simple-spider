@@ -32,8 +32,9 @@ public class HttpClientDownloader implements Downloader{
      * 设置代理
      * @param proxyProvider
      */
-    public void setProxyProvider(ProxyProvider proxyProvider) {
+    public HttpClientDownloader setProxyProvider(ProxyProvider proxyProvider) {
         this.proxyProvider = proxyProvider;
+        return this;
     }
 
     /**

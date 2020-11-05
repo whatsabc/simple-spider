@@ -6,15 +6,18 @@ import java.util.*;
 
 /**
  * Site，要爬取的站点信息
+ * **以下set函数都使用了builder设计模式**
  * @author Jianshu
  * @time 20201102
  */
 public class Site {
     //主机
     private String domain;
+    //userAgent
+    private String userAgent;
     //userAgent池
     private UserAgentProvider userAgentProvider;
-    //
+
     private Map<String, String> defaultCookies = new LinkedHashMap<String, String>();
     private Map<String, Map<String, String>> cookies = new HashMap<String, Map<String, String>>();
     private String charset;
@@ -27,16 +30,27 @@ public class Site {
         this.domain = domain;
     }
 
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    public String getUserAgent() {
+        //每次提供一个随机的userAgent
+        userAgent=userAgentProvider.getUserAgent();
+        return userAgent;
+    }
+
     public UserAgentProvider getUserAgentProvider() {
         return userAgentProvider;
     }
 
-    public void setUserAgentProvider(UserAgentProvider userAgentProvider) {
+    /**
+     * @param userAgentProvider
+     * @return
+     */
+    public Site setUserAgentProvider(UserAgentProvider userAgentProvider) {
         this.userAgentProvider = userAgentProvider;
-    }
-
-    public String getUserAgent() {
-        return userAgentProvider.getUserAgent().getUserAgent();
+        return this;
     }
 
     public Map<String, String> getDefaultCookies() {

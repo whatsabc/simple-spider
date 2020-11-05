@@ -5,10 +5,13 @@ import com.simplespider.downloader.HttpClientDownloader;
 import com.simplespider.model.Page;
 import com.simplespider.model.Request;
 import com.simplespider.model.Site;
+import com.simplespider.pipeline.ConsolePipeline;
+import com.simplespider.pipeline.Pipeline;
 import com.simplespider.processor.PageProcessor;
 import com.simplespider.scheduler.QueueScheduler;
 import com.simplespider.scheduler.Scheduler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -19,17 +22,21 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.apache.log4j.Logger;
 
 /**
+ * **以下set函数都使用了builder设计模式**
  * @author Jianshu
  * @time 20201102
  */
 public class Spider implements Runnable{
+    //日志记录
     protected Logger logger=Logger.getLogger(Spider.class);
     //初始化调度器
     protected Scheduler scheduler=new QueueScheduler();
-    //下载器，在initComponent函数中初始化
+    //下载器
     protected Downloader downloader;
     //页面处理器
     protected PageProcessor pageProcessor;
+    //管道pipelines
+    protected List<Pipeline> pipelines=new ArrayList<>();
     //线程池
     protected ThreadPoolExecutor threadPoolExecutor;
     //最大爬取线程数量
@@ -60,12 +67,14 @@ public class Spider implements Runnable{
     }
 
     /**
-     * 加入起始爬取url
-     * @param url
+     * 加入起始爬取urls
+     * @param urls
      * @return
      */
-    public Spider addUrl(String url){
-        addRequest(new Request(url));
+    public Spider addUrl(List<String> urls){
+        for (String url:urls) {
+            addRequest(new Request(url));
+        }
         signalNewUrl();
         return this;
     }
@@ -80,17 +89,55 @@ public class Spider implements Runnable{
         return this;
     }
 
+
     /**
-     * 初始化下载器和线程池
+     * 设置多个pipelines
+     * @param pipelines
+     * @return
+     */
+    public Spider setPipelines(List<Pipeline> pipelines) {
+        this.pipelines=pipelines;
+        return this;
+    }
+
+    /**
+     * 加入单个pipeline
+     * @param pipeline
+     * @return
+     */
+    public Spider addPipeline(Pipeline pipeline){
+        pipelines.add(pipeline);
+        return this;
+    }
+
+    /**
+     * 设置线程池数量
+     * @param threadNum
+     * @return
+     */
+    public Spider setThreadNum(int threadNum) {
+        this.threadNum=threadNum;
+        if (threadNum<=0) {
+            throw new IllegalArgumentException("threadNum should be more than one!");
+        }
+        return this;
+    }
+
+    /**
+     * 初始化
      */
     protected void initComponent(){
         if(downloader==null){
             this.downloader=new HttpClientDownloader();
         }
+        if(pipelines.isEmpty()){
+            pipelines.add(new ConsolePipeline());
+        }
         if(threadPoolExecutor==null||threadPoolExecutor.isShutdown()){
             threadPoolExecutor=new ThreadPoolExecutor(
                     threadNum,threadNum,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
         }
+
     }
 
     @Override
@@ -145,6 +192,9 @@ public class Spider implements Runnable{
     private void onDownloadSuccess(Request request, Page page){
         pageProcessor.process(page);
         extractAndAddRequests(page);
+        for (Pipeline pipeline:pipelines) {
+            pipeline.process(page.getResultItems());
+        }
     }
 
     /**

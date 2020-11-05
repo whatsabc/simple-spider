@@ -63,26 +63,13 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.SpiderStart">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.App" />
+  <component name="RunManager">
+    <configuration name="DouBanPageProcessor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.simplespider.processor.DouBanPageProcessor" />
       <module name="simple-spider" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SpiderStart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.simplespider.SpiderStart" />
-      <module name="simple-spider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.simplespider.*" />
+          <option name="PATTERN" value="com.simplespider.processor.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,59 +88,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="simple-spider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.simplespider.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.simplespider.test" />
-      <option name="MAIN_CLASS_NAME" value="com.simplespider.test.ApplicationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApplicationTest.RandomTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="simple-spider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.simplespider.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.simplespider.test" />
-      <option name="MAIN_CLASS_NAME" value="com.simplespider.test.ApplicationTest" />
-      <option name="METHOD_NAME" value="RandomTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApplicationTest.spiderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="simple-spider" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.simplespider.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.simplespider.test" />
-      <option name="MAIN_CLASS_NAME" value="com.simplespider.test.ApplicationTest" />
-      <option name="METHOD_NAME" value="spiderTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.SpiderStart" />
-        <item itemvalue="JUnit.ApplicationTest.spiderTest" />
-        <item itemvalue="JUnit.ApplicationTest.RandomTest" />
-        <item itemvalue="JUnit.ApplicationTest" />
+        <item itemvalue="应用程序.DouBanPageProcessor" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +111,9 @@
       <workItem from="1604462373141" duration="736000" />
       <workItem from="1604477998318" duration="3906000" />
       <workItem from="1604496372049" duration="133000" />
-      <workItem from="1604496518485" duration="2694000" />
+      <workItem from="1604496518485" duration="6181000" />
+      <workItem from="1604541253839" duration="6357000" />
+      <workItem from="1604564826584" duration="7232000" />
     </task>
     <servers />
   </component>
@@ -198,59 +137,72 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1604496381389" />
-    <state x="880" y="-1756" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604148501153">
-      <screen x="10" y="-2160" width="2560" height="1409" />
-    </state>
-    <state x="880" y="-1756" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/10.-2160.2560.1409@10.-2160.2560.1409" timestamp="1604148501153" />
-    <state x="574" y="133" key="#com.intellij.ide.util.MemberChooser" timestamp="1604498585324">
+    <state x="249" y="0" width="1089" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604572730904">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604281821492" />
-    <state x="574" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1604498585324" />
+    <state x="880" y="-1756" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/10.-2160.2560.1409@10.-2160.2560.1409" timestamp="1604148501153" />
+    <state x="249" y="0" width="1089" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1604572730904" />
+    <state x="574" y="133" key="#com.intellij.ide.util.MemberChooser" timestamp="1604572516302">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546020630" />
+    <state x="574" y="133" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1604572516302" />
+    <state x="122" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604565193029">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="122" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1604565193029" />
+    <state x="499" y="163" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604566405518">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="163" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1604566405518" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1604225158954">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604225158954" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1604498982694">
+    <state width="1493" height="546" key="GridCell.Tab.0.bottom" timestamp="1604577045743">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1478" height="176" key="GridCell.Tab.0.bottom/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604196024299" />
+    <state width="1493" height="271" key="GridCell.Tab.0.bottom/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
     <state width="1732" height="404" key="GridCell.Tab.0.bottom/0.0.1536.834/10.-2160.2560.1409@10.-2160.2560.1409" timestamp="1604148518928" />
-    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1604498982694" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1604498982694">
+    <state width="1493" height="546" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1604577045743" />
+    <state width="1493" height="546" key="GridCell.Tab.0.center" timestamp="1604577045742">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1478" height="176" key="GridCell.Tab.0.center/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604196024299" />
+    <state width="1493" height="271" key="GridCell.Tab.0.center/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
     <state width="1732" height="404" key="GridCell.Tab.0.center/0.0.1536.834/10.-2160.2560.1409@10.-2160.2560.1409" timestamp="1604148518928" />
-    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1604498982694" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1604498982694">
+    <state width="1493" height="546" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1604577045742" />
+    <state width="1493" height="546" key="GridCell.Tab.0.left" timestamp="1604577045742">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1478" height="176" key="GridCell.Tab.0.left/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604196024299" />
+    <state width="1493" height="271" key="GridCell.Tab.0.left/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538177" />
     <state width="1732" height="404" key="GridCell.Tab.0.left/0.0.1536.834/10.-2160.2560.1409@10.-2160.2560.1409" timestamp="1604148518928" />
-    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1604498982694" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1604498982694">
+    <state width="1493" height="546" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1604577045742" />
+    <state width="1493" height="546" key="GridCell.Tab.0.right" timestamp="1604577045742">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1478" height="176" key="GridCell.Tab.0.right/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604196024299" />
+    <state width="1493" height="271" key="GridCell.Tab.0.right/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
     <state width="1732" height="404" key="GridCell.Tab.0.right/0.0.1536.834/10.-2160.2560.1409@10.-2160.2560.1409" timestamp="1604148518928" />
-    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1604498982694" />
-    <state width="1493" height="242" key="GridCell.Tab.1.bottom" timestamp="1604400431116">
+    <state width="1493" height="546" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1604577045742" />
+    <state width="1493" height="271" key="GridCell.Tab.1.bottom" timestamp="1604560286210">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1604400431116" />
-    <state width="1493" height="242" key="GridCell.Tab.1.center" timestamp="1604400431116">
+    <state width="1493" height="271" key="GridCell.Tab.1.bottom/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
+    <state width="1493" height="271" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1604560286210" />
+    <state width="1493" height="271" key="GridCell.Tab.1.center" timestamp="1604560286210">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1604400431116" />
-    <state width="1493" height="242" key="GridCell.Tab.1.left" timestamp="1604400431116">
+    <state width="1493" height="271" key="GridCell.Tab.1.center/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
+    <state width="1493" height="271" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1604560286210" />
+    <state width="1493" height="271" key="GridCell.Tab.1.left" timestamp="1604560286210">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1604400431116" />
-    <state width="1493" height="242" key="GridCell.Tab.1.right" timestamp="1604400431116">
+    <state width="1493" height="271" key="GridCell.Tab.1.left/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
+    <state width="1493" height="271" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1604560286210" />
+    <state width="1493" height="271" key="GridCell.Tab.1.right" timestamp="1604560286210">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="242" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1604400431116" />
+    <state width="1493" height="271" key="GridCell.Tab.1.right/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604546538178" />
+    <state width="1493" height="271" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1604560286210" />
     <state x="270" y="61" key="SettingsEditor" timestamp="1604496506228">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
