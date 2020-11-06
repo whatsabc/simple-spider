@@ -58,11 +58,11 @@ public class Spider implements Runnable{
     protected final static int STAT_STOPPED=2;
     //线程池状态原子判断器
     protected AtomicInteger stat=new AtomicInteger(STAT_INIT);
-    //监视器
+    //监视器，默认为null
     protected List<SpiderListener> spiderListeners;
 
     /**
-     * 初始化爬虫Processor
+     * 加入Processor
      * @param pageProcessor
      */
     public Spider(PageProcessor pageProcessor){
@@ -71,7 +71,7 @@ public class Spider implements Runnable{
     }
 
     /**
-     * 加入起始爬取urls
+     * 加入爬取urls队列
      * @param urls
      * @return
      */
@@ -93,9 +93,8 @@ public class Spider implements Runnable{
         return this;
     }
 
-
     /**
-     * 设置多个pipelines
+     * 一次性设置pipelines列表
      * @param pipelines
      * @return
      */
@@ -105,7 +104,7 @@ public class Spider implements Runnable{
     }
 
     /**
-     * 加入单个pipeline
+     * 设置单个pipeline
      * @param pipeline
      * @return
      */
@@ -127,8 +126,22 @@ public class Spider implements Runnable{
         return this;
     }
 
+    public List<SpiderListener> getSpiderListeners() {
+        return spiderListeners;
+    }
+
     /**
-     * 初始化
+     * 设置监视器
+     * @param spiderListeners
+     * @return
+     */
+    public Spider setSpiderListeners(List<SpiderListener> spiderListeners) {
+        this.spiderListeners = spiderListeners;
+        return this;
+    }
+
+    /**
+     * 初始化下载器，管道和线程池
      */
     protected void initComponent(){
         if(downloader==null){
@@ -141,9 +154,11 @@ public class Spider implements Runnable{
             threadPoolExecutor=new ThreadPoolExecutor(
                     threadNum,threadNum,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
         }
-
     }
 
+    /**
+     * run方法
+     */
     @Override
     public void run() {
         stat.set(STAT_RUNNING);
@@ -246,6 +261,9 @@ public class Spider implements Runnable{
      * @param request
      */
     protected void onError(Request request) {
+        if(spiderListeners==null){
+            return;
+        }
         if (!spiderListeners.isEmpty()) {
             for (SpiderListener spiderListener : spiderListeners) {
                 spiderListener.onError(request);
@@ -258,6 +276,9 @@ public class Spider implements Runnable{
      * @param request
      */
     protected void onSuccess(Request request) {
+        if(spiderListeners==null){
+            return;
+        }
         if (!spiderListeners.isEmpty()) {
             for (SpiderListener spiderListener : spiderListeners) {
                 spiderListener.onSuccess(request);

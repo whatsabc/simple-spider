@@ -3,7 +3,6 @@ package com.simplespider.processor;
 import com.simplespider.downloader.HttpClientDownloader;
 import com.simplespider.model.Page;
 import com.simplespider.model.Site;
-import com.simplespider.pipeline.ConsolePipeline;
 import com.simplespider.pipeline.FilePipeline;
 import com.simplespider.proxy.Proxy;
 import com.simplespider.proxy.SimpleProxyProvider;
@@ -21,11 +20,11 @@ import java.util.List;
 /**
  * @author Jianshu
  * @since 20201102
- * 页面处理规则，需要自己实现，实现了一个爬取豆瓣读书的范例
+ * 根据图书分类tag，爬取每个tag下的前1000个图书的url，用作进一步爬取的url来源
  */
-public class DouBanPageProcessor implements PageProcessor{
+public class DBBookTagUrlPageProcessor implements PageProcessor{
 
-    protected Logger logger=Logger.getLogger(DouBanPageProcessor.class);
+    protected Logger logger=Logger.getLogger(DBBookTagUrlPageProcessor.class);
 
     protected static List<String> userAgentList=new ArrayList<>();
 
@@ -84,16 +83,20 @@ public class DouBanPageProcessor implements PageProcessor{
 
         SimpleProxyProvider simpleProxyProvider=new SimpleProxyProvider(proxyList);
 
+        String url="https://book.douban.com/tag/%E5%8E%86%E5%8F%B2";
+        String filename="历史"+".txt";
+
         //加入起始urls
         List<String> urls=new ArrayList<>();
-        urls.add("https://book.douban.com/tag/%E7%AE%97%E6%B3%95?start=0&type=T");
+        urls.add(url+"?start=0&type=T");
         for(int i=20;i<=980;i=i+20){
-            urls.add("https://book.douban.com/tag/%E7%AE%97%E6%B3%95?start="+i+"&type=T");
+            urls.add(url+"?start="+i+"&type=T");
         }
 
-        Spider spider=new Spider(new DouBanPageProcessor());
+        //设置爬虫
+        Spider spider=new Spider(new DBBookTagUrlPageProcessor());
         spider.addUrl(urls)
-                .addPipeline(new FilePipeline().setFilePath("算法.txt"))
+                .addPipeline(new FilePipeline().setFilePath("D:\\spider-download\\"+filename))
                 .setDownloader(new HttpClientDownloader())
                 .setThreadNum(5)
                 .run();
