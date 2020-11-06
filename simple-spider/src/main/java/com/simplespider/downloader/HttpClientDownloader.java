@@ -15,9 +15,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import java.io.IOException;
 
 /**
+ * HttpClient下载器
  * @author Jianshu
- * @time 20201101
- * 默认HttpClient下载器
+ * @since 20201101
  */
 public class HttpClientDownloader implements Downloader{
 

@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author Jianshu
- * @time 20201102
+ * @since 20201102
  * 页面处理规则，需要自己实现，实现了一个爬取豆瓣读书的范例
  */
 public class DouBanPageProcessor implements PageProcessor{
@@ -84,9 +84,6 @@ public class DouBanPageProcessor implements PageProcessor{
 
         SimpleProxyProvider simpleProxyProvider=new SimpleProxyProvider(proxyList);
 
-        //新建爬虫对象，注入处理器
-        Spider spider=new Spider(new DouBanPageProcessor());
-
         //加入起始urls
         List<String> urls=new ArrayList<>();
         urls.add("https://book.douban.com/tag/%E7%AE%97%E6%B3%95?start=0&type=T");
@@ -94,10 +91,12 @@ public class DouBanPageProcessor implements PageProcessor{
             urls.add("https://book.douban.com/tag/%E7%AE%97%E6%B3%95?start="+i+"&type=T");
         }
 
+        Spider spider=new Spider(new DouBanPageProcessor());
         spider.addUrl(urls)
-                .addPipeline(new FilePipeline())
+                .addPipeline(new FilePipeline().setFilePath("算法.txt"))
                 .setDownloader(new HttpClientDownloader())
                 .setThreadNum(5)
                 .run();
     }
 }
+

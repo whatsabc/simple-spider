@@ -3,6 +3,11 @@ package com.simplespider.model;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 返回结果封装类，从process返回到pipeline
+ * @author Jianshu
+ * @since 20201105
+ */
 public class ResultItems {
 
     private Map<String,Object> fields=new LinkedHashMap<>();

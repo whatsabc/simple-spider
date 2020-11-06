@@ -11,6 +11,8 @@ import org.apache.http.client.methods.RequestBuilder;
 
 /**
  * HttpUriRequest生成类
+ * @author Jianshu
+ * @since 20201102
  */
 public class HttpUriRequestConverter {
 

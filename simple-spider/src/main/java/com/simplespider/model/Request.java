@@ -3,7 +3,7 @@ package com.simplespider.model;
 /**
  * Request是对url的一层封装。一个url对应一个Request对象，同时他也是PageProcessor通过Scheduler来管理Downloader的媒介类
  * @author Jianshu
- * @time 20201101
+ * @since 20201101
  */
 public class Request {
 

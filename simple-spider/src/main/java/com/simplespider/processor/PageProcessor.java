@@ -5,7 +5,7 @@ import com.simplespider.model.Site;
 
 /**
  * @author Jianshu
- * @time 20201101
+ * @since 20201101
  */
 public interface PageProcessor {
     public void process(Page page);

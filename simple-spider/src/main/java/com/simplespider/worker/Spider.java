@@ -11,6 +11,8 @@ import com.simplespider.processor.PageProcessor;
 import com.simplespider.scheduler.QueueScheduler;
 import com.simplespider.scheduler.Scheduler;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -24,7 +26,7 @@ import org.apache.log4j.Logger;
 /**
  * **以下set函数都使用了builder设计模式**
  * @author Jianshu
- * @time 20201102
+ * @since 20201102
  */
 public class Spider implements Runnable{
     //日志记录
@@ -56,6 +58,8 @@ public class Spider implements Runnable{
     protected final static int STAT_STOPPED=2;
     //线程池状态原子判断器
     protected AtomicInteger stat=new AtomicInteger(STAT_INIT);
+    //监视器
+    protected List<SpiderListener> spiderListeners;
 
     /**
      * 初始化爬虫Processor
@@ -160,8 +164,10 @@ public class Spider implements Runnable{
                     public void run() {
                         try{
                             processRequest(request);
+                            onSuccess(request);
                             logger.info("process request "+request+" success");
                         } catch (Exception e){
+                            onError(request);
                             logger.error("process request "+request+" error",e);
                         }finally {
                             signalNewUrl();
@@ -209,8 +215,54 @@ public class Spider implements Runnable{
         }
     }
 
-    public void close() {
+    /**
+     * run函数结束清理
+     */
+    public void close(){
+        destroyEach(downloader);
+        destroyEach(pageProcessor);
+        for (Pipeline pipeline:pipelines){
+            destroyEach(pipeline);
+        }
         threadPoolExecutor.shutdown();
+    }
+
+    /**
+     * 关闭资源
+     * @param object
+     */
+    private void destroyEach(Object object){
+        if(object instanceof Closeable) {
+            try {
+                ((Closeable)object).close();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 调用监视器error函数回调
+     * @param request
+     */
+    protected void onError(Request request) {
+        if (!spiderListeners.isEmpty()) {
+            for (SpiderListener spiderListener : spiderListeners) {
+                spiderListener.onError(request);
+            }
+        }
+    }
+
+    /**
+     * 调用监视器success函数回调
+     * @param request
+     */
+    protected void onSuccess(Request request) {
+        if (!spiderListeners.isEmpty()) {
+            for (SpiderListener spiderListener : spiderListeners) {
+                spiderListener.onSuccess(request);
+            }
+        }
     }
     /**
      * 将Request类型加入队列

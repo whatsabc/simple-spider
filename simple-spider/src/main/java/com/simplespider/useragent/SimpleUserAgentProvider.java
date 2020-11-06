@@ -7,7 +7,6 @@ import java.util.Random;
 public class SimpleUserAgentProvider implements UserAgentProvider{
 
     List<String> userAgentList;
-
     public SimpleUserAgentProvider(List<String> userAgentList) {
         this.userAgentList = userAgentList;
     }

@@ -9,15 +9,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * 文件传输管道
+ * @author Jianshu
+ * @since 20201105
+ */
 public class FilePipeline implements Pipeline{
+
     protected Logger logger=Logger.getLogger(FilePipeline.class);
+
+    String filePath;
+
+    public FilePipeline setFilePath(String filePath) {
+        this.filePath = filePath;
+        return this;
+    }
+
     @Override
     public void process(ResultItems resultItems) {
-        String fileName="算法.txt";
-        BufferedWriter bufferedWriter;
         try {
-            bufferedWriter = new BufferedWriter(new FileWriter(fileName,true));
-            logger.info("file "+fileName+" open success");
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath,true));
+            logger.info("file "+filePath+" open success");
             for(Map.Entry<String,Object> entry:resultItems.getAll().entrySet()){
                 bufferedWriter.write(entry.getValue().toString());
                 bufferedWriter.newLine();

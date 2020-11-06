@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * Page是对Downloader下载结果的封装。同时他也是PageProcessor待处理的核心对象
+ * @author Jianshu
+ * @since 20201101
  */
 public class Page {
     private String url;

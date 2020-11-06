@@ -7,6 +7,8 @@ import org.apache.http.impl.client.HttpClients;
 
 /**
  * HttpClient生成类
+ * @author Jianshu
+ * @since 20201102
  */
 public class HttpClientGenerator {
 
