@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
+import com.simplespider.pipeline.database.DataBasePipeline;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import org.apache.log4j.Logger;
 
 /**
  * @author Jianshu
@@ -14,6 +17,9 @@ import org.apache.commons.dbcp2.BasicDataSourceFactory;
  * @TODO dbcp工具类（数据库连接池工具），用于管理多个数据库连接对象
  */
 public class DBCPUtils {
+
+    static Logger logger=Logger.getLogger(DBCPUtils.class);
+
     static DataSource ds = null;
     static {
         try {
@@ -34,6 +40,7 @@ public class DBCPUtils {
      */
     public static Connection getConnection() {
         try {
+            logger.info("[[DBCPUtils]] success getConnection");
             return ds.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);

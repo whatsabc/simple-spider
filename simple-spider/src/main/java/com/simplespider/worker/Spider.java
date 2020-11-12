@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.simplespider.thread.CountableThreadPool;
 import org.apache.log4j.Logger;
 
 /**
@@ -60,6 +62,8 @@ public class Spider implements Runnable{
     protected AtomicInteger stat=new AtomicInteger(STAT_INIT);
     //监视器，默认为null
     protected List<SpiderListener> spiderListeners;
+
+    protected CountableThreadPool threadPool;
 
     /**
      * 加入Processor
@@ -150,9 +154,8 @@ public class Spider implements Runnable{
         if(pipelines.isEmpty()){
             pipelines.add(new ConsolePipeline());
         }
-        if(threadPoolExecutor==null||threadPoolExecutor.isShutdown()){
-            threadPoolExecutor=new ThreadPoolExecutor(
-                    threadNum,threadNum,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
+        if(threadPool==null||threadPool.isShutdown()){
+            threadPool=new CountableThreadPool(threadNum);
         }
     }
 
@@ -163,10 +166,11 @@ public class Spider implements Runnable{
     public void run() {
         stat.set(STAT_RUNNING);
         initComponent();
-        logger.info("Spider started!");
+        logger.info("[[Spider]] Spider started!");
         while(!Thread.currentThread().isInterrupted()&&stat.get()==STAT_RUNNING){
             final Request request=scheduler.poll();
             if(request==null){
+                logger.info("[[Spider]] request is null");
                 if (threadPoolExecutor.getActiveCount()==0) {
                     break;
                 }
@@ -174,16 +178,16 @@ public class Spider implements Runnable{
                 waitNewUrl();
             }
             else{
-                threadPoolExecutor.execute(new Runnable() {
+                threadPool.execute(new Runnable() {
                     @Override
                     public void run() {
                         try{
                             processRequest(request);
                             onSuccess(request);
-                            logger.info("process request "+request+" success");
+                            logger.info("[[Spider]] process request "+request+" success");
                         } catch (Exception e){
                             onError(request);
-                            logger.error("process request "+request+" error",e);
+                            logger.error("[[Spider]] process request "+request+" error",e);
                         }finally {
                             signalNewUrl();
                         }
@@ -296,6 +300,7 @@ public class Spider implements Runnable{
     private void waitNewUrl(){
         newUrlLock.lock();
         try{
+            logger.info("[[Spider]] waitNewUrl");
             newUrlCondition.await(emptySleepTime, TimeUnit.MILLISECONDS);
         }catch(InterruptedException e){
             System.out.println();
@@ -306,6 +311,7 @@ public class Spider implements Runnable{
 
     private void signalNewUrl(){
         try{
+            logger.info("[[Spider]] signalNewUrl");
             newUrlLock.lock();
             newUrlCondition.signalAll();
         }

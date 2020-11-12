@@ -15,12 +15,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.seimicrawler.xpath.JXDocument;
+import org.seimicrawler.xpath.JXNode;
 
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,39 +34,56 @@ public class DBBookPageProcessor implements PageProcessor{
     @Override
     public void process(Page page) {
 
-        int sleepTime=5000;
+        int sleepTime=8000;
         Document document= Jsoup.parse(page.getContent());
 
         String title=document.getElementsByTag("h1").text();
         page.putField("书名:",title);
 
-        String elementsInfoItems=document.getElementById("info").text();
-        String []infoItem=elementsInfoItems.split(" ");
-        for(int i=0;i<infoItem.length-1;i=i+2){
-            if(infoItem[i].equals("出版年:")){
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");//注意月份是MM
-                try {
-                    Date date = simpleDateFormat.parse(infoItem[i+1]);
-                    page.putField(infoItem[i],date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                continue;
+        Element elementsInfo=document.getElementById("info");
+        String infoItems=elementsInfo.text();
+        String []infoItem=infoItems.split(" ");
+
+        String temp=new String();
+        String key=new String();
+        for(int i=0;i<infoItem.length;i++){
+            Pattern pattern= Pattern.compile("\\:");
+            Matcher matcher=pattern.matcher(infoItem[i]);
+            if(matcher.find()){
+                page.putField(key,temp);
+                temp="";
+                key=infoItem[i];
             }
-            if(infoItem[i].equals("定价:")){
-                Pattern pattern= Pattern.compile("\\d+(\\.\\d+)?");
-                Matcher matcher=pattern.matcher(infoItem[i+1]);
-                Double price=new Double(0d);
-                if(matcher.find()){
-                    price=Double.valueOf(matcher.group());
-                }
-                page.putField("定价:",price);
-                continue;
+            else if(i==infoItem.length-1){
+                temp+=infoItem[i];
+                page.putField(key,temp);
             }
-            page.putField(infoItem[i],infoItem[i+1]);
+            else{
+                temp+=infoItem[i];
+            }
         }
 
-        page.putField("分类:","文学");
+        String dateString=page.getResultItems().get("出版年:");
+        Calendar calendar=Calendar.getInstance();
+        String []dates=dateString.split("-");
+        int []integer=new int[3];
+        for(int i=0;i<dates.length;i++){
+            integer[i]=Integer.valueOf(dates[i]);
+        }
+        calendar.set(integer[0],integer[1],integer[2]);
+        Date date = calendar.getTime();
+        page.putField("出版年:", date);
+
+        String priceString=page.getResultItems().get("定价:");
+        Pattern pattern= Pattern.compile("\\d+(\\.\\d+)?");
+        Matcher matcherPrice=pattern.matcher(priceString);
+        Double priceDouble=new Double(0d);
+        if(matcherPrice.find()){
+            priceDouble=Double.valueOf(matcherPrice.group());
+        }
+        page.putField("定价:",priceDouble);
+
+        page.putField("分类:","小说");
 
         String rating=document.getElementsByClass("ll rating_num ").get(0).text();
         page.putField("rating:",Double.valueOf(rating));
@@ -79,6 +97,8 @@ public class DBBookPageProcessor implements PageProcessor{
         page.putField("mainPic:",mainPic);
 
         page.putField("href:",page.getUrl());
+
+        logger.info("[[StatusCode]]"+page.getStatusCode()+"[[Url]]"+page.getUrl());
 
         try {
             Thread.sleep(sleepTime);
@@ -108,18 +128,28 @@ public class DBBookPageProcessor implements PageProcessor{
         userAgentList.add(
                 "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 SE 2.X MetaSr 1.0");
 
-        String url="https://book.douban.com/subject/4913064/";
+        List<String> stringList=new ArrayList<>();
+        //stringList.add("https://book.douban.com/subject/34949694/");//TEST后删除
 
-        //加入起始urls
-        List<String> urls=new ArrayList<>();
-        urls.add(url);
+        String filename="小说";
+        String filePath="D:\\spider-download\\"+filename+".txt";
+        try {
+            BufferedReader bufferedReader= new BufferedReader(new FileReader(filePath));
+            String temp;
+            while((temp=bufferedReader.readLine())!=null){
+                stringList.add(temp);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //设置爬虫
         Spider spider=new Spider(new DBBookPageProcessor());
-        spider.addUrl(urls)
-                .addPipeline(new DataBasePipeline())
+        spider.addUrl(stringList)
+                .addPipeline(new DataBasePipeline()).addPipeline(new ConsolePipeline())
                 .setDownloader(new HttpClientDownloader())
-                .setThreadNum(5)
+                .setThreadNum(1)
                 .run();
     }
 }
