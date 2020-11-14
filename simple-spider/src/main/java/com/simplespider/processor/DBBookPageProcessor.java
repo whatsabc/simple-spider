@@ -37,47 +37,44 @@ public class DBBookPageProcessor implements PageProcessor{
         int sleepTime=8000;
         Document document= Jsoup.parse(page.getContent());
 
-        String title=document.getElementsByTag("h1").text();
-        page.putField("书名:",title);
+        String bookName=document.getElementsByTag("h1").text();
+        page.putField("书名:",bookName);
 
-        Element elementsInfo=document.getElementById("info");
-        String infoItems=elementsInfo.text();
-        String []infoItem=infoItems.split(" ");
-
+        String infoItem=document.getElementById("info").text();
+        String []infoItems=infoItem.split(" ");
         String temp=new String();
         String key=new String();
-        for(int i=0;i<infoItem.length;i++){
+        for(int i=0;i<infoItems.length;i++){
             Pattern pattern= Pattern.compile("\\:");
-            Matcher matcher=pattern.matcher(infoItem[i]);
+            Matcher matcher=pattern.matcher(infoItems[i]);
             if(matcher.find()){
                 page.putField(key,temp);
                 temp="";
-                key=infoItem[i];
+                key=infoItems[i];
             }
-            else if(i==infoItem.length-1){
-                temp+=infoItem[i];
+            else if(i==infoItems.length-1){
+                temp+=infoItems[i];
                 page.putField(key,temp);
             }
             else{
-                temp+=infoItem[i];
+                temp+=infoItems[i];
             }
         }
 
         String dateString=page.getResultItems().get("出版年:");
-        Calendar calendar=Calendar.getInstance();
-        String []dates=dateString.split("-");
-        int []integer=new int[3];
-        for(int i=0;i<dates.length;i++){
-            integer[i]=Integer.valueOf(dates[i]);
+        String []dateStrings=dateString.split("-");
+        int []dateInt=new int[3];
+        for(int i=0;i<dateStrings.length;i++){
+            dateInt[i]=Integer.valueOf(dateStrings[i]);
         }
-        calendar.set(integer[0],integer[1],integer[2]);
-        Date date = calendar.getTime();
-        page.putField("出版年:", date);
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(dateInt[0],dateInt[1],dateInt[2]);
+        page.putField("出版年:", calendar.getTime());
 
         String priceString=page.getResultItems().get("定价:");
         Pattern pattern= Pattern.compile("\\d+(\\.\\d+)?");
         Matcher matcherPrice=pattern.matcher(priceString);
-        Double priceDouble=new Double(0d);
+        Double priceDouble=0d;
         if(matcherPrice.find()){
             priceDouble=Double.valueOf(matcherPrice.group());
         }
@@ -100,6 +97,9 @@ public class DBBookPageProcessor implements PageProcessor{
 
         logger.info("[[StatusCode]]"+page.getStatusCode()+"[[Url]]"+page.getUrl());
 
+        /**
+         * 睡眠时间
+         */
         try {
             Thread.sleep(sleepTime);
             logger.info("sleeping "+sleepTime+" millis...");
@@ -129,7 +129,6 @@ public class DBBookPageProcessor implements PageProcessor{
                 "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 SE 2.X MetaSr 1.0");
 
         List<String> stringList=new ArrayList<>();
-        //stringList.add("https://book.douban.com/subject/34949694/");//TEST后删除
 
         String filename="小说";
         String filePath="D:\\spider-download\\"+filename+".txt";
