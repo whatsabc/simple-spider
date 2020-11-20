@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- *
+ * 控制并发数量的线程池
  * @author Jianshu
  * @since 20201112
  */

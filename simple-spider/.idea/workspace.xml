@@ -19,10 +19,21 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10cb530c-ef70-4402-868c-76fc7908db39" name="默认的" comment="" />
+    <list default="true" id="10cb530c-ef70-4402-868c-76fc7908db39" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/simplespider/thread/CountableThreadPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simplespider/thread/CountableThreadPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/simplespider/test/ApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simplespider/test/ApplicationTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +50,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JavaeeView">
+    <option name="frameworksView" value="false" />
+    <option name="showModules" value="false" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -61,7 +76,7 @@
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -188,6 +203,13 @@
       <workItem from="1605058467853" duration="6450000" />
       <workItem from="1605177494947" duration="11218000" />
       <workItem from="1605236126705" duration="3053000" />
+      <workItem from="1605344390925" duration="3629000" />
+      <workItem from="1605440407590" duration="66000" />
+      <workItem from="1605444835324" duration="1060000" />
+      <workItem from="1605660199382" duration="300000" />
+      <workItem from="1605752008054" duration="685000" />
+      <workItem from="1605792616385" duration="44000" />
+      <workItem from="1605841723902" duration="110000" />
     </task>
     <servers />
   </component>
@@ -199,7 +221,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -290,10 +324,10 @@
     </state>
     <state width="1493" height="264" key="GridCell.Tab.1.right/0.0.1536.834/10.-2160.2560.1409@0.0.1536.834" timestamp="1604993215100" />
     <state width="1493" height="50" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1605190030264" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1604676040570">
+    <state x="270" y="0" key="SettingsEditor" timestamp="1605841833471">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1604676040570" />
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1605841833471" />
     <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1605054286493">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -317,15 +351,6 @@
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1605055802302" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/simplespider/test/ApplicationTest.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.util.concurrent.ThreadPoolExecutor" memberName="workers" />

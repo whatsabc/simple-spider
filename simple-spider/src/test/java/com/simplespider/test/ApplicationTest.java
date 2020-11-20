@@ -17,28 +17,6 @@ public class ApplicationTest {
     private String hello;
     @Test
     public void spiderTest(){
-        String infoItems="作者: 余华 出版社: 作家出版社 出版年: 2012-8-1 页数: 191 定价: 20.00元 装帧: 平装 丛书: 余华作品（2012版） ISBN: 9787506365437";
-        String []infoItem=infoItems.split(" ");
 
-        String temp=new String();
-        String key=new String();
-        LinkedHashMap<String,String> linkedHashMap=new LinkedHashMap<>();
-        for(int i=0;i<infoItem.length;i++){
-            Pattern pattern= Pattern.compile("\\:");
-            Matcher matcher=pattern.matcher(infoItem[i]);
-            if(matcher.find()){
-                linkedHashMap.put(key,temp);
-                temp="";
-                key=infoItem[i];
-            }
-            else if(i==infoItem.length-1){
-                temp+=infoItem[i];
-                linkedHashMap.put(key,temp);
-            }
-            else{
-                temp+=infoItem[i];
-            }
-        }
-        System.out.println();
     }
 }
