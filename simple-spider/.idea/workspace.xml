@@ -29,11 +29,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10cb530c-ef70-4402-868c-76fc7908db39" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/simplespider/thread/CountableThreadPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/simplespider/thread/CountableThreadPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/simplespider/test/ApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/simplespider/test/ApplicationTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="10cb530c-ef70-4402-868c-76fc7908db39" name="默认的" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -209,8 +205,16 @@
       <workItem from="1605660199382" duration="300000" />
       <workItem from="1605752008054" duration="685000" />
       <workItem from="1605792616385" duration="44000" />
-      <workItem from="1605841723902" duration="110000" />
+      <workItem from="1605841723902" duration="239000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1605841881260</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605841881260</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +243,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="249" y="0" key="#Project_Structure" timestamp="1604496381389">
@@ -328,6 +336,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="270" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1605841833471" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1605841903560">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1605841903560" />
     <state width="775" height="424" key="XDebugger.FullValuePopup" timestamp="1605054286493">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
